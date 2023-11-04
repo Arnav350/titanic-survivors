@@ -39,13 +39,12 @@ submit = st.button('Submit')
 if submit:
     passenger = (passenger[0])
     sex = (0 if sex == 'Male' else 1)
-    match embarked:
-        case 'Cherbourg':
-            embarked = 0
-        case 'Queenstown':
-            embarked = 1
-        case 'Southampton':
-            embarked = 2
+    if embarked == 'Cherbourg':
+        embarked = 0
+    elif embarked == 'Queenstown':
+        embarked = 1
+    elif embarked == 'Southampton':
+        embarked = 2
 
     predict = model.predict(pd.DataFrame([[passenger, sex, age, fare, embarked]], columns=['Pclass', 'Age', 'Fare', 'Le_Sex', 'Le_Embarked']))
     st.write('You Survived' if predict == 1 else 'You did not survive')
